@@ -1,5 +1,6 @@
-import { SplashScreen, Slot } from 'expo-router';
+import { Slot, SplashScreen } from 'expo-router';
 import { useFonts } from 'expo-font';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import './global.css';
 import { useEffect } from 'react';
@@ -21,7 +22,19 @@ const RootLayout = () => {
 
   if (!loaded && !error) return null;
 
-  return <Slot />;
+  return (
+    <GestureHandlerRootView>
+      <Slot />
+    </GestureHandlerRootView>
+  );
+
+  // return <Slot />
+
+  // return (
+  //   <Stack>
+  //     <Stack.Screen name='tabs' options={{ headerShown: false }} />
+  //   </Stack>
+  // );
 };
 
 export default RootLayout;

@@ -1,23 +1,27 @@
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { router } from 'expo-router';
+import { router, useNavigation } from 'expo-router';
 
 import { CustomButton } from '@/components';
+import { DrawerActions } from '@react-navigation/native';
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
+
+  const onToggleDrawer = () => {
+    navigation.dispatch(DrawerActions.toggleDrawer);
+  };
+
   return (
     <SafeAreaView className='px-10'>
       <View>
-        <CustomButton
-          onPress={() => router.push('/tabs/(stack)/products')}
-          className='mb-5'
-        >
+        <CustomButton onPress={() => router.push('/products')} className='mb-5'>
           Products
         </CustomButton>
 
         <CustomButton
           color='secondary'
-          onPress={() => router.push('/(stack)/profile')}
+          onPress={() => router.push('/profile')}
           className='mb-5'
         >
           Profile
@@ -25,7 +29,7 @@ const HomeScreen = () => {
 
         <CustomButton
           color='tertiary'
-          onPress={() => router.push('/(stack)/settings')}
+          onPress={() => router.push('/settings')}
           className='mb-5'
         >
           Settings
@@ -33,10 +37,14 @@ const HomeScreen = () => {
 
         <CustomButton
           variant='outline'
-          onPress={() => router.push('/tabs/(stack)/products')}
+          onPress={() => router.push('/products')}
           className='mb-5'
         >
           Products
+        </CustomButton>
+
+        <CustomButton onPress={onToggleDrawer} className='mb-5'>
+          Show Drawer
         </CustomButton>
 
         {/*

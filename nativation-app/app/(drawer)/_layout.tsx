@@ -17,7 +17,7 @@ const DrawerLayout = () => {
       drawerContent={CustomDrawer}
     >
       <Drawer.Screen
-        name='user/index' // This is the name of the page and must match the url from root
+        name='user/index'
         options={{
           drawerLabel: 'Users',
           title: 'User',
@@ -28,13 +28,25 @@ const DrawerLayout = () => {
       />
 
       <Drawer.Screen
-        name='schedule/index' // This is the name of the page and must match the url from root
+        name='schedule/index'
         options={{
           drawerLabel: 'Schedule',
           title: 'Hours',
           drawerIcon: ({ size, color }) => (
             <Ionicons name='calendar-outline' size={size} color={color} />
           ),
+        }}
+      />
+
+      <Drawer.Screen
+        name='(tabs)'
+        options={{
+          drawerLabel: 'Tabs + stack',
+          title: 'Tabs + stack',
+          drawerIcon: ({ size, color }) => (
+            <Ionicons name='albums-outline' size={size} color={color} />
+          ),
+          headerShown: false,
         }}
       />
     </Drawer>

@@ -1,6 +1,7 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 import {
+  getMovieByIdAction,
   nowPlayingMoviesAction,
   popularMoviesAction,
   topRankedMoviesAction,
@@ -44,4 +45,11 @@ export const useGetUpcomingMoviesQuery = () =>
     queryKey: ['upcoming-movies'],
     staleTime: 1000 * 60 * 60 * 24,
     queryFn: upcomingMoviesAction,
+  });
+
+export const useGetMovieByQuery = (id: number) =>
+  useQuery({
+    queryKey: ['top-ranked-movies'],
+    staleTime: 1000 * 60 * 60 * 24,
+    queryFn: () => getMovieByIdAction(id),
   });

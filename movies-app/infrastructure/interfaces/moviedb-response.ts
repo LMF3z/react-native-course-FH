@@ -26,6 +26,12 @@ export interface Result {
   video: boolean;
   vote_average: number;
   vote_count: number;
+
+  genres: string[];
+  duration: number;
+  budget: number;
+  production_companies: string[];
+  runtime: number;
 }
 
 export enum OriginalLanguage {

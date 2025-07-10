@@ -1,4 +1,4 @@
-import { View, Text, useWindowDimensions } from 'react-native';
+import { View, useWindowDimensions } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 
 import { Movie } from '@/infrastructure';
@@ -31,7 +31,7 @@ export const MainSlidesShow = ({ movies }: Props) => {
         //   parallaxScrollingScale: 0.8,
         //   parallaxScrollingOffset: 50,
         // }}
-        defaultIndex={0}
+        defaultIndex={1}
       />
     </View>
   );

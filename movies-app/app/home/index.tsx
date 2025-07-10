@@ -2,9 +2,9 @@ import { Text, View, ActivityIndicator, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import {
+  useGetInfinityTopRankedMoviesQuery,
   useGetNowPlayingMoviesQuery,
   useGetPopularMoviesQuery,
-  useGetTopRankedMoviesQuery,
   useGetUpcomingMoviesQuery,
 } from '@/core/queries';
 import { MainSlidesShow, MovieHorizontalList } from '@/core/components';
@@ -14,8 +14,11 @@ const HomeScreen = () => {
   const { data: moviesData, isLoading } = useGetNowPlayingMoviesQuery();
   const { data: popularMovies, isLoading: popularLoading } =
     useGetPopularMoviesQuery();
-  const { data: topMovies, isLoading: topLoading } =
-    useGetTopRankedMoviesQuery();
+  const {
+    data: topMovies,
+    isLoading: topLoading,
+    fetchNextPage,
+  } = useGetInfinityTopRankedMoviesQuery();
   const { data: upcomingMovies, isLoading: upcomingLoading } =
     useGetUpcomingMoviesQuery();
 
@@ -49,9 +52,10 @@ const HomeScreen = () => {
       />
 
       <MovieHorizontalList
-        movies={topMovies || []}
+        movies={topMovies.pages.flat() || []}
         title='Best Ranking'
         className='mb-5'
+        loadNextPage={fetchNextPage}
       />
 
       <MovieHorizontalList movies={upcomingMovies || []} title='Coming soon' />

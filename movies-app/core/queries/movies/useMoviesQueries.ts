@@ -7,6 +7,7 @@ import {
   topRankedMoviesAction,
   upcomingMoviesAction,
 } from '../../actions';
+import { getMovieCreditsByIdAction } from '@/core/actions/movies/get-movie-credits-by-id.actions';
 
 export const useGetNowPlayingMoviesQuery = () =>
   useQuery({
@@ -49,7 +50,14 @@ export const useGetUpcomingMoviesQuery = () =>
 
 export const useGetMovieByQuery = (id: number) =>
   useQuery({
-    queryKey: ['top-ranked-movies'],
+    queryKey: ['top-ranked-movies', id],
     staleTime: 1000 * 60 * 60 * 24,
     queryFn: () => getMovieByIdAction(id),
+  });
+
+export const useGetMovieCastByIDQuery = (id: number) =>
+  useQuery({
+    queryKey: ['movies-cast', id],
+    staleTime: 1000 * 60 * 60 * 24,
+    queryFn: () => getMovieCreditsByIdAction(id),
   });

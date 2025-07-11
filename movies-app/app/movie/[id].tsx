@@ -1,7 +1,12 @@
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, ScrollView } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 
 import { useGetMovieByQuery } from '@/core/queries';
+import {
+  ActorFlatList,
+  MovieDescription,
+  MovieHeader,
+} from '@/core/components';
 
 const MovieScreen = () => {
   const { id } = useLocalSearchParams();
@@ -16,9 +21,17 @@ const MovieScreen = () => {
     );
 
   return (
-    <View>
-      <Text>{JSON.stringify(data)}</Text>
-    </View>
+    <ScrollView className='flex-1'>
+      <MovieHeader
+        poster={data.poster}
+        originalTitle={data.originalTitle}
+        title={data.title}
+      />
+
+      <MovieDescription movie={data} />
+
+      <ActorFlatList movieId={Number(id)} />
+    </ScrollView>
   );
 };
 
